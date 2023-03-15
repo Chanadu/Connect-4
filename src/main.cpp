@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "iostream"
 #include "string"
+#include "main.h"
 
 const int SCREEN_WIDTH = 1600;
 const int SCREEN_HEIGHT = 1000;
@@ -28,20 +29,18 @@ enum GameStates
     GAME_OVER_PLAYER_2 = -2,
     GAME_OVER_DRAW = 0
 };
-GameStates gameState = PLAYER_1_TURN;
+GameStates gameState;
 
-int totalClicks = 0;
-
-void numberClicked(int num);
-void setUpBoard();
-GameStates isGameOver();
+int totalClicks;
 
 int main(void)
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Connect 4");
-    SetTargetFPS(60);
+    gameState = PLAYER_1_TURN;
+    totalClicks = 0;
     setUpBoard();
 
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Connect 4");
+    SetTargetFPS(60);
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
         // Update
@@ -62,7 +61,7 @@ int main(void)
         if (IsKeyPressed(KEY_SEVEN))
             numberClicked(7);
 
-        gameState = isGameOver();
+        gameState = (GameStates)isGameOver();
 
         //----------------------------------------------------------------------------------
 
@@ -129,7 +128,7 @@ void setUpBoard()
     }
 }
 
-GameStates isGameOver()
+int isGameOver()
 {
     if (gameState <= 0)
         return gameState;
