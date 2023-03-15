@@ -32,9 +32,9 @@ GameStates gameState = PLAYER_1_TURN;
 
 int totalClicks = 0;
 
-static void numberClicked(int num);
-static void setUpBoard();
-static GameStates isGameOver();
+void numberClicked(int num);
+void setUpBoard();
+GameStates isGameOver();
 
 int main(void)
 {
@@ -101,7 +101,7 @@ int main(void)
     return 0;
 }
 
-static void numberClicked(int num)
+void numberClicked(int num)
 {
     if (gameState <= 0)
         return;
@@ -118,7 +118,7 @@ static void numberClicked(int num)
     }
 }
 
-static void setUpBoard()
+void setUpBoard()
 {
     for (int i = 0; i < BOARD_SIZE_X; i++)
     {
@@ -129,7 +129,7 @@ static void setUpBoard()
     }
 }
 
-static GameStates isGameOver()
+GameStates isGameOver()
 {
     if (gameState <= 0)
         return gameState;
